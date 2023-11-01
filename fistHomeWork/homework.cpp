@@ -13,7 +13,7 @@ nodeHead a,b;
 void insertAB(int whichone,int number){
 	node* temp = (node*)malloc(sizeof(node));
 	temp->val = number;
-	if(whichone = 0)//A
+	if(whichone == 0)//A
 		{	
 			if(!a.next||a.next->val <= number){
 				temp->next = a.next;
@@ -21,7 +21,7 @@ void insertAB(int whichone,int number){
 			}
 			else{
 				node* tempList = a.next;
-				while(tempList->next&&tempList->next->val > number) tempList = temp->next;
+				while(tempList->next&&tempList->next->val > number) tempList = tempList->next;
 				temp->next = tempList->next;
 				tempList->next = temp;
 			}
@@ -35,7 +35,7 @@ void insertAB(int whichone,int number){
 			}
 			else{
 				node* tempList = b.next;
-				while(tempList->next&&tempList->next->val > number) tempList = temp->next;
+				while(tempList->next&&tempList->next->val < number) tempList = tempList->next;
 				temp->next = tempList->next;
 				tempList->next = temp;
 			}
@@ -44,7 +44,7 @@ void insertAB(int whichone,int number){
 	
 }
 void nodeChange(int orgin, int target){
-		if(orgin = 0){
+		if(orgin == 0){
 			int temp = a.next->val;
 			a.next = a.next->next;
 			a.num--;
@@ -58,7 +58,7 @@ void nodeChange(int orgin, int target){
 }
 void insert(int number)
 {
-    if(number > a.next->val) {
+    if(!a.next||number < a.next->val) {
     	insertAB(0,number);
     	if(a.num > b.num+1)
     		nodeChange(0,1);
@@ -72,11 +72,24 @@ void insert(int number)
 }
 int main(int argc, char const *argv[])
 {
-    int numbers[10] = {5,7,8,3,1,2,6,7,9,10};
+    int numbers[10] = {5,7,1,6,4,3,2,9,10,8};//1 2 3 4 5 6 7 8 9 10 
     for(int i = 0;i<10;i++){
         insert(numbers[i]);
     }
     cout<<"ÖĞÎ»Êı£º"<<a.next->val<<"  and   "<<b.next->val;
-    cout<<"hello";
+    node* tempa = a.next;
+    node* tempb = b.next;
+	cout<<endl;
+    cout<<"a:  ";
+    while(tempa){
+    	cout<<tempa->val<<"   ";
+    	tempa = tempa->next;
+	}
+	cout<<endl;
+	cout<<"b:  ";
+    while(tempb){
+    	cout<<tempb->val<<"   ";
+    	tempb = tempb->next;
+	}
     return 0;
 }
