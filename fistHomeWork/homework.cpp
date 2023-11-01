@@ -29,7 +29,7 @@ void insertAB(int whichone,int number){
 		}
 	else//B
 		{
-			if(!b.next||a.next->val <= number){
+			if(!b.next||b.next->val >= number){
 				temp->next = b.next;
 				b.next = temp;
 			}
