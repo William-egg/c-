@@ -15,7 +15,7 @@ void insertAB(int whichone,int number){
 	temp->val = number;
 	if(whichone = 0)//A
 		{	
-			if(a.next&&a.next->val <= number){
+			if(!a.next||a.next->val <= number){
 				temp->next = a.next;
 				a.next = temp;
 			}
@@ -29,7 +29,7 @@ void insertAB(int whichone,int number){
 		}
 	else//B
 		{
-			if(b.next&&a.next->val <= number){
+			if(!b.next||a.next->val <= number){
 				temp->next = b.next;
 				b.next = temp;
 			}
@@ -73,7 +73,7 @@ void insert(int number)
 int main(int argc, char const *argv[])
 {
     int numbers[10] = {5,7,8,3,1,2,6,7,9,10};
-    for(int i = 0;i<1;i++){
+    for(int i = 0;i<10;i++){
         insert(numbers[i]);
     }
     cout<<"ÖÐÎ»Êý£º"<<a.next->val<<"  and   "<<b.next->val;
